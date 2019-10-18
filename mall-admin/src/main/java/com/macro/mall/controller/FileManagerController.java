@@ -73,13 +73,13 @@ public class FileManagerController {
 
             String parentPath = OSInfoUtils.rootPathDir + pathDeposit;
 
-            File parentFileDir = new File(pathDeposit);
+            File parentFileDir = new File(parentPath);
 
             //创建目录
             if (!parentFileDir.exists()) {
                 parentFileDir.mkdirs();
             }
-            File targetFile = new File(pathDeposit, newName);
+            File targetFile = new File(parentPath, newName);
 
             //上传
             file.transferTo(targetFile);
