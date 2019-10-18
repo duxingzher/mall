@@ -9,7 +9,9 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -28,7 +30,7 @@ public class OssController {
     @RequestMapping(value = "/policy", method = RequestMethod.GET)
     @ResponseBody
     public CommonResult<OssPolicyResult> policy() {
-        OssPolicyResult result = ossService.policy();
+        OssPolicyResult result = ossService.policy2();
         return CommonResult.success(result);
     }
 
