@@ -32,13 +32,15 @@ public class OSInfoUtils implements InitializingBean {
 
     @Override
     public void afterPropertiesSet() throws Exception {
+        File collFilePathDir = null;
         if (isLinux()) {
-            collFilePath = rootPathDir + linuxCollFilePath;
+            collFilePath = linuxCollFilePath;
+            collFilePathDir = new File(rootPathDir + collFilePath);
         } else {
             collFilePath = windowsCollFilePath;
+            collFilePathDir = new File(collFilePath);
         }
 
-        File collFilePathDir = new File(collFilePath);
         if (!collFilePathDir.exists()) {
             collFilePathDir.mkdirs();
         }
