@@ -3,6 +3,7 @@
  */
 package com.macro.mall.controller;
 
+import com.macro.mall.util.OSInfoUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -15,6 +16,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
+
+import static com.macro.mall.util.OSInfoUtils.rootPathDir;
 
 @Controller
 @RequestMapping(value = "/filemanager")
@@ -68,7 +71,7 @@ public class FileManagerController {
 
             String newName = uuidName + "." + type;
 
-            String parentPath = pathDeposit;
+            String parentPath = OSInfoUtils.rootPathDir + pathDeposit;
 
             File parentFileDir = new File(pathDeposit);
 

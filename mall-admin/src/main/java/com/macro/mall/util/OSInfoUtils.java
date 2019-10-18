@@ -17,6 +17,8 @@ public class OSInfoUtils implements InitializingBean {
     @Value("${aliyun.oss.dir.prefix}")
     private String linuxCollFilePath;
 
+    public static final String rootPathDir = "/home/zjx/static/";
+
     public static String collFilePath = "";
 
 
@@ -31,7 +33,7 @@ public class OSInfoUtils implements InitializingBean {
     @Override
     public void afterPropertiesSet() throws Exception {
         if (isLinux()) {
-            collFilePath = linuxCollFilePath;
+            collFilePath = rootPathDir + linuxCollFilePath;
         } else {
             collFilePath = windowsCollFilePath;
         }

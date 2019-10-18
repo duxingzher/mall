@@ -131,7 +131,7 @@ public class OssServiceImpl implements OssService {
 			result.setSignature(signature);
 			result.setDir(parentPath);
 			result.setCallback(callbackData);
-			result.setHost("");
+			result.setHost("zjx.violeteg.com:8090");
 		} catch (Exception e) {
 			LOGGER.error("签名生成失败", e);
 		}
