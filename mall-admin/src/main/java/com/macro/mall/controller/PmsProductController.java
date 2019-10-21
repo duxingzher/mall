@@ -6,9 +6,11 @@ import com.macro.mall.dto.PmsProductParam;
 import com.macro.mall.dto.PmsProductQueryParam;
 import com.macro.mall.dto.PmsProductResult;
 import com.macro.mall.model.PmsProduct;
+import com.macro.mall.model.app.PmsProductAppVo;
 import com.macro.mall.service.PmsProductService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -16,6 +18,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * 商品管理Controller
@@ -73,6 +76,27 @@ public class PmsProductController {
         List<PmsProduct> productList = productService.list(productQueryParam, pageSize, pageNum);
         return CommonResult.success(CommonPage.restPage(productList));
     }
+
+
+    @ApiOperation("查询商品展示列表-对外给顾客使用")
+    @RequestMapping(value = "/listForCustomer", method = RequestMethod.GET)
+    @ResponseBody
+    public CommonResult<CommonPage<PmsProductAppVo>> getListForCustomer(
+                                                        @RequestParam(value = "pageSize", defaultValue = "20") Integer pageSize,
+                                                        @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum) {
+        PmsProductQueryParam productQueryParam = new PmsProductQueryParam();
+        productQueryParam.setPublishStatus(1);
+//        productQueryParam.setVerifyStatus(1);
+        List<PmsProduct> productList = productService.list(productQueryParam, pageSize, pageNum);
+        List<PmsProductAppVo> collect = productList.stream().map(e -> {
+            PmsProductAppVo temp = new PmsProductAppVo();
+            BeanUtils.copyProperties(e, temp);
+            return temp;
+        }).collect(Collectors.toList());
+
+        return CommonResult.success(CommonPage.restPage(collect));
+    }
+
 
     @ApiOperation("根据商品名称或货号模糊查询")
     @RequestMapping(value = "/simpleList", method = RequestMethod.GET)
