@@ -187,6 +187,8 @@ public class PmsProductServiceImpl implements PmsProductService {
         if (productQueryParam.getProductCategoryId() != null) {
             criteria.andProductCategoryIdEqualTo(productQueryParam.getProductCategoryId());
         }
+
+        productExample.setOrderByClause("sort desc");
         return productMapper.selectByExample(productExample);
     }
 
