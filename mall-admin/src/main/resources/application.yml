@@ -27,10 +27,9 @@ aliyun:
       prefix: /mall/images/ # 上传文件夹路径前缀
       windowsPrefix: d:/tmp
 logging:
-  file: logs/mall/amll_log.log #配置日志生成路径
-    max-size: 20M
-    max-history: 30
+  file: logs/mall/amll_log.log
+  file.max-size: 20M
+  file.max-history: 30
   level:
     root: info #日志配置DEBUG,INFO,WARN,ERROR
     com.macro.mall: debug
-
