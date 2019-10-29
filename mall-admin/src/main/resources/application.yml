@@ -27,7 +27,7 @@ aliyun:
       prefix: /mall/images/ # 上传文件夹路径前缀
       windowsPrefix: d:/tmp
 logging:
-  file: logs/mall/amll_log.log
+  file: logs/mall/
   file.max-size: 20M
   file.max-history: 30
   level:
